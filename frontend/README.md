@@ -6,6 +6,20 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 In the project directory, you can run:
 
+### ``.env`` file is REQUIRED:
+
+```env
+REACT_APP_BACKEND_URL = 
+REACT_APP_FIREBASE_APIKEY=
+REACT_APP_FIREBASE_AUTH_DOMAIN=
+REACT_APP_FIREBASE_DB_URL=
+REACT_APP_FIREBASE_PROJ_ID=
+REACT_APP_FIREBASE_STORAGE_BUCKET=
+REACT_APP_FIREBASE_MESSANGING_SENDER_ID=
+REACT_APP_FIREBASE_APP_ID=
+REACT_APP_FIREBASE_MEASUREMENTID=
+```
+
 ### `npm start`
 
 Runs the app in the development mode.\
