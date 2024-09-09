@@ -1,0 +1,6 @@
+.leaflet-routing-container {
+    background-color: white; /* Change background color */
+    font-size: 14px; /* Change font size */
+    font-weight: 500;
+    border-radius: 10px;
+}
