@@ -1,0 +1,9 @@
+{
+    "crimemapping.com": {
+        "name":     "Crime Mapping",
+        "source":   "crimemapping.com",
+        "type":     "Crime map",
+        "class":    "CrimeMappingPlugin",
+        "location": "./CrimeMapping/CrimeMappingPlugin.ts"
+    }
+}
