@@ -20,29 +20,51 @@ To run dev environment (auto-restart when changes are detected):
 npm run start:dev
 ```
 
-## Rules
+## Requirements
 
-1.  A new branch **MUST** be created whenever a feature is changed.
+1. `.env` file is **REQUIRED**:
+```env
+PORT= [Your deployment port]
+FIREBASE_APIKEY=
+FIREBASE_AUTH_DOMAIN=
+FIREBASE_DB_URL = 
+FIREBASE_PROJ_ID = 
+FIREBASE_STORAGE_BUCKET=
+FIREBASE_MESSANGING_SENDER_ID=
+FIREBASE_APP_ID=
+FIREBASE_MEASUREMENTID=
+```
 
-2. **DO NOT** merge directly into main branch. Feature changes **MUST** only be merged into **dev** branch.
+2. Data plugin is **REQUIRED**:
 
-3. **READ** carefully `Rules.md` file in every model folder.
+Plugins have to be declared in ``./src/plugins/plugins.json``. An example will be given bellow:
 
-4. `.env` file is **REQUIRED**.
-
-5. Variables and functions must be written in Camel Case with the first lowercase letter. Classes must be written in Camel Case with the first uppercase letter. Constants must be written in Screaming Snake Case (all capitialized). Example:
-
-``` ts
-class Hello {
-    readonly PI_VALUE: Number = 3.1415
-
-    public printHelloWorld(): void {
-        let helloWorld:string = "Hello world!";
-        console.log(helloWorld);
+``` json
+{
+    "example.com": {
+        "name":     "Example source",
+        "source":   "example.com",
+        "type":     "Crime map",
+        "class":    "ExamplePlugin",
+        "location": "./ExamplePlugin/ExamplePlugin.ts"
     }
 }
 ```
 
-6. Handlers must be tested using unit tests in folder `__test__/models/routes` (see test samples in the same folder).
+And in ``./src/plugins/ExamplePlugin/ExamplePlugin.ts``, the class must implement ``ICrimeDataPlugin``:
 
-7. End-to-end test must be placed in `__test__/e2e` (see test samples in the same folder).
+``` ts
+export class CrimeMappingPlugin implements ICrimeDataPlugin {
+    pluginName: string;
+    dataSourceName: string;
+
+    constructor() {
+        this.pluginName = "Crime Mapping Plugin";
+        this.dataSourceName = "Crime Mapping";
+    }
+
+    async getCrimes(polygon: IPolygon, out: ICrime[]): Promise<ICrime[]> {
+        // Put your code to get the crime data overhere
+    }
+}
+```
